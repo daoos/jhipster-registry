@@ -8,6 +8,7 @@ import org.springframework.boot.actuate.metrics.writer.MetricWriter;
 
 /**
  * Log reporter for Spring Boot metrics
+ * spring boot监控日志写入器
  *
  * Output Spring Boot metrics to logs, using the same format as Dropwizard's Sfl4jReporter
  */

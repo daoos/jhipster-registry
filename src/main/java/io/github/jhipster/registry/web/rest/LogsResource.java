@@ -15,6 +15,7 @@ import ch.qos.logback.classic.LoggerContext;
 import io.github.jhipster.registry.web.rest.dto.LoggerDTO;
 
 /**
+ * 在运行时控制器的视图和管理日志级别
  * Controller for view and managing Log Level at runtime.
  */
 @RestController
@@ -33,6 +34,10 @@ public class LogsResource {
             .collect(Collectors.toList());
     }
 
+    /**
+     * 204没有内容
+     * @param jsonLogger
+     */
     @RequestMapping(value = "/logs",
         method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)

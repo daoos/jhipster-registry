@@ -28,6 +28,10 @@ import com.ryantenney.metrics.spring.config.annotation.MetricsConfigurerAdapter;
 
 import io.github.jhipster.registry.config.metrics.SpectatorLogMetricWriter;
 
+/**
+ * 指标监控配置
+ *
+ */
 @Configuration
 @EnableMetrics(proxyTargetClass = true)
 public class MetricsConfiguration extends MetricsConfigurerAdapter {

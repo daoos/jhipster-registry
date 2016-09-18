@@ -16,6 +16,10 @@ import io.github.jhipster.registry.security.Http401UnauthorizedEntryPoint;
 import io.github.jhipster.registry.security.jwt.JWTConfigurer;
 import io.github.jhipster.registry.security.jwt.TokenProvider;
 
+/**
+ * 安全配置
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)

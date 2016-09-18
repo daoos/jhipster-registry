@@ -4,10 +4,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 import ch.qos.logback.classic.Logger;
 
+/**
+ * 日志对象
+ *
+ */
 public class LoggerDTO {
 
+    /**
+     * 日志名
+     */
     private String name;
 
+    /**
+     * 日志级别
+     */
     private String level;
 
     public LoggerDTO(Logger logger) {

@@ -12,6 +12,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 /**
+ * 对401，拒绝访问
  * Returns a 401 error code (Unauthorized) to the client.
  */
 @Component
@@ -28,6 +29,7 @@ public class Http401UnauthorizedEntryPoint implements AuthenticationEntryPoint {
         ServletException {
 
         log.debug("Pre-authenticated entry point called. Rejecting access");
+//        拒绝访问
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
     }
 }

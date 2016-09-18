@@ -18,6 +18,10 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
 
+/**
+ * token提供者
+ *
+ */
 @Component
 public class TokenProvider {
 
@@ -25,26 +29,46 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
 
+    /**
+     * token密钥
+     */
     private String secretKey;
 
+    /**
+     * token在几秒内有效
+     */
     private long tokenValidityInSeconds;
 
+    /**
+     * 对于记住我的用户几秒内有效
+     */
     private long tokenValidityInSecondsForRememberMe;
 
+    /**
+     * jhipster配置
+     */
     @Inject
     private JHipsterProperties jHipsterProperties;
 
     @PostConstruct
     public void init() {
+//    	获取token加密密钥
         this.secretKey =
             jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
-
+//获取token有效时长
         this.tokenValidityInSeconds =
             1000 * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds();
+//        获取记住我用户的俄有效时长
         this.tokenValidityInSecondsForRememberMe =
             1000 * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe();
     }
 
+    /**
+     * 创建token
+     * @param authentication
+     * @param rememberMe
+     * @return
+     */
     public String createToken(Authentication authentication, Boolean rememberMe) {
         String authorities = authentication.getAuthorities().stream()
             .map(authority -> authority.getAuthority())
@@ -66,6 +90,11 @@ public class TokenProvider {
             .compact();
     }
 
+    /**
+     * 根据token获取认证信息
+     * @param token
+     * @return
+     */
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parser()
             .setSigningKey(secretKey)
@@ -83,6 +112,11 @@ public class TokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
+    /**
+     * 验证token
+     * @param authToken
+     * @return
+     */
     public boolean validateToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);

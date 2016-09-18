@@ -14,6 +14,7 @@ import com.codahale.metrics.annotation.Timed;
 
 /**
  * Controller for getting the SSH public key.
+ * 获取SSH的公钥
  */
 @RestController
 @RequestMapping("/api")

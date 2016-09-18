@@ -1,6 +1,7 @@
 package io.github.jhipster.registry.web.rest.errors;
 
 /**
+ * 自定义,参数化的异常,可以在客户端翻译
  * Custom, parameterized exception, which can be translated on the client side.
  * For example:
  *
@@ -18,7 +19,13 @@ public class CustomParameterizedException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 异常信息
+     */
     private final String message;
+    /**
+     * 异常参数
+     */
     private final String[] params;
 
     public CustomParameterizedException(String message, String... params) {

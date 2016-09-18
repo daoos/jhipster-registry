@@ -28,8 +28,9 @@ jhipster:
     security:
         authentication:
             jwt:
+                #json web token 密钥
                 secret: my-secret-token-to-change-in-production
-                # Token is valid 24 hours
+                # Token is valid 24 hours token 有效时长是24小时
                 tokenValidityInSeconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
@@ -43,12 +44,12 @@ jhipster:
             port: 2003
             prefix: catalog
         logs: # Reports Dropwizard metrics in the logs
-            enabled: false
+            enabled: true
             reportFrequency: 60 # in seconds
     logging:
-        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
-            enabled: false
-            host: localhost
+        logstash: # 日志转发给logstash,由LoggingConfiguration使用
+            enabled: true
+            host: 192.168.1.78
             port: 5000
             queueSize: 512
         spectator-metrics: # Reports Spectator Circuit Breaker metrics in the logs

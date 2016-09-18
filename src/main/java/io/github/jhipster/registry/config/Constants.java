@@ -1,6 +1,7 @@
 package io.github.jhipster.registry.config;
 
 /**
+ * 应用常量
  * Application constants.
  */
 public final class Constants {

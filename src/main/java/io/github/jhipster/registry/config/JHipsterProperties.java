@@ -3,6 +3,7 @@ package io.github.jhipster.registry.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
+ *读取jhipster配置属性信息
  * Properties specific to JHipster.
  *
  * <p>

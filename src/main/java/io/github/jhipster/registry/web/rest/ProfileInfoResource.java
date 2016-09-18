@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 配置文件信息接口
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class ProfileInfoResource {
@@ -18,15 +22,27 @@ public class ProfileInfoResource {
     @Inject
     Environment env;
 
+    /**
+     * jhipster配置信息
+     */
     @Inject
     private JHipsterProperties jHipsterProperties;
 
+    /**
+     * 本地搜索位置
+     */
     @Value("${spring.cloud.config.server.native.search-locations:}")
     private String nativeSearchLocation;
 
+    /**
+     * 
+     */
     @Value("${spring.cloud.config.server.git.uri:}")
     private String gitUri;
 
+    /**
+     * 
+     */
     @Value("${spring.cloud.config.server.git.search-paths:}")
     private String gitSearchLocation;
 
@@ -35,6 +51,10 @@ public class ProfileInfoResource {
         return new ProfileInfoResponse(env.getActiveProfiles(), getRibbonEnv(), nativeSearchLocation, gitUri, gitSearchLocation);
     }
 
+    /**
+     * 获取 Ribbon环境属性配置
+     * @return
+     */
     private String getRibbonEnv() {
         String[] activeProfiles = env.getActiveProfiles();
         String[] displayOnActiveProfiles = jHipsterProperties.getRibbon().getDisplayOnActiveProfiles();
@@ -53,6 +73,11 @@ public class ProfileInfoResource {
         return null;
     }
 
+    /**
+     * @author 
+     * ProfileInfo 配置信息响应信息
+     *
+     */
     private class ProfileInfoResponse {
         public String[] activeProfiles;
         public String ribbonEnv;

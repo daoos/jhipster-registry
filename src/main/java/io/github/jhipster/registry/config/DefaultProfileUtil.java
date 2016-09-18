@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * 属性文件加载工具类
  * Utility class to load a Spring profile to be used as default
  * when there is no <code>spring.profiles.active</code> set in the environment or as command line argument.
  * If the value is not available in <code>application.yml</code> then <code>dev</code> profile will be used as default.
@@ -21,11 +22,15 @@ public final class DefaultProfileUtil {
 
     private static final Logger log = LoggerFactory.getLogger(DefaultProfileUtil.class);
 
+    /**
+     * 配置的默认配置文件类型
+     */
     private static final String SPRING_PROFILE_ACTIVE = "spring.profiles.active";
 
     private static final Properties BUILD_PROPERTIES = readProperties();
 
     /**
+     * 获取默认的配置文件配置信息
      * Get a default profile from <code>application.yml</code>.
      */
     public static String getDefaultActiveProfiles(){
@@ -42,6 +47,7 @@ public final class DefaultProfileUtil {
     }
 
     /**
+     * 设置配置信息
      * Set a default to use when no profile is configured.
      */
     public static void addDefaultProfile(SpringApplication app) {
@@ -56,6 +62,7 @@ public final class DefaultProfileUtil {
     }
 
     /**
+     * 读取配置文件
      * Load application.yml from classpath.
      */
     private static Properties readProperties() {

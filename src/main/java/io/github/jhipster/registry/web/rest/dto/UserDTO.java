@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Email;
 
 /**
+ * 对应一个用户机器权限
  * A DTO representing a user, with his authorities.
  */
 public class UserDTO {
@@ -15,6 +16,9 @@ public class UserDTO {
     @Size(min = 1, max = 50)
     private String login;
 
+    /**
+     * 权限集合
+     */
     private Set<String> authorities;
 
     public UserDTO() {

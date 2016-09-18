@@ -3,18 +3,28 @@ package io.github.jhipster.registry.web.rest.dto;
 import javax.validation.constraints.*;
 
 /**
+ * 用户凭证对象
  * A DTO representing a user's credentials
  */
 public class LoginDTO {
 
+    /**
+     * 用户名
+     */
     @NotNull
     @Size(min = 1, max = 50)
     private String username;
 
+    /**
+     * 用户密码
+     */
     @NotNull
     @Size(min = 5, max = 64)
     private String password;
 
+    /**
+     * 是否记住我
+     */
     private Boolean rememberMe;
 
     public String getUsername() {

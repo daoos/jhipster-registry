@@ -20,6 +20,10 @@ import io.github.jhipster.registry.security.jwt.JWTConfigurer;
 import io.github.jhipster.registry.security.jwt.TokenProvider;
 import io.github.jhipster.registry.web.rest.dto.LoginDTO;
 
+/**
+ * 用户jsonwebtoken控制器
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class UserJWTController {
@@ -30,10 +34,17 @@ public class UserJWTController {
     @Inject
     private AuthenticationManager authenticationManager;
 
+    /**
+     * 用户身份认证
+     * @param loginDTO
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     @Timed
     public ResponseEntity<?> authorize(@Valid @RequestBody LoginDTO loginDTO, HttpServletResponse response) {
 
+//    	用户名密码身份验证令牌
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword());
 
@@ -41,10 +52,13 @@ public class UserJWTController {
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             boolean rememberMe = (loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe();
+//            创景token
             String jwt = tokenProvider.createToken(authentication, rememberMe);
+//            设置请求头
             response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
             return ResponseEntity.ok(new JWTToken(jwt));
         } catch (AuthenticationException exception) {
+//        	设置权限异常
             return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
         }
     }

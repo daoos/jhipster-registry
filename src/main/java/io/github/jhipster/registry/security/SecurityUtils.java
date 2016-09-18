@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 /**
+ * 工具类
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
@@ -18,6 +19,7 @@ public final class SecurityUtils {
     }
 
     /**
+     * 获取当前登录用户
      * Get the login of the current user.
      *
      * @return the login of the current user
@@ -28,7 +30,9 @@ public final class SecurityUtils {
         String userName = null;
         if (authentication != null) {
             if (authentication.getPrincipal() instanceof UserDetails) {
+//            	用户的详细资料
                 UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+//                获取用户名
                 userName = springSecurityUser.getUsername();
             } else if (authentication.getPrincipal() instanceof String) {
                 userName = (String) authentication.getPrincipal();
@@ -47,6 +51,7 @@ public final class SecurityUtils {
         Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
         if (authorities != null) {
             for (GrantedAuthority authority : authorities) {
+//            	如果不是匿名用户则说明有权限
                 if (authority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)) {
                     return false;
                 }
@@ -56,6 +61,7 @@ public final class SecurityUtils {
     }
 
     /**
+     * 判断当前用户是否拥有指定角色权限
      * If the current user has a specific authority (security role).
      *
      * <p>The name of this method comes from the isUserInRole() method in the Servlet API</p>

@@ -34,6 +34,7 @@ public class EurekaResource {
     private final Logger log = LoggerFactory.getLogger(EurekaResource.class);
 
     /**
+     * 获取应用程序信息
      * GET  /eureka/applications : get Eureka applications information
      */
     @RequestMapping(value = "/eureka/applications",
@@ -46,15 +47,22 @@ public class EurekaResource {
         return new ResponseEntity<>(eurekaDTO, HttpStatus.OK);
     }
 
+    /**
+     * 获取所有的应用程序
+     * @return
+     */
     private List<Map<String, Object>> getApplications() {
+//    	获取应用程序集合
         List<Application> sortedApplications = getRegistry().getSortedApplications();
         ArrayList<Map<String, Object>> apps = new ArrayList<>();
+//        
         for (Application app : sortedApplications) {
             LinkedHashMap<String, Object> appData = new LinkedHashMap<>();
             apps.add(appData);
             appData.put("name", app.getName());
             List<Map<String, String>> instances = new ArrayList<>();
             for (InstanceInfo info : app.getInstances()) {
+//            	应用的实例
                 Map<String, String> instance = new HashMap<>();
                 instance.put("instanceId", info.getInstanceId());
                 instance.put("homePageUrl", info.getHomePageUrl());

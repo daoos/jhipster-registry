@@ -5,11 +5,19 @@ import java.util.Map;
 
 /**
  * A DTO representing Eureka applications list.
+ * Eureka 的应用列表（含状态）
+ * 
  */
 public class EurekaDTO {
 
+    /**
+     * 应用map列表
+     */
     private List<Map<String, Object>> applications;
 
+    /**
+     * 应用状态map
+     */
     private Map<String, Object> status;
 
     public List<Map<String, Object>> getApplications() {

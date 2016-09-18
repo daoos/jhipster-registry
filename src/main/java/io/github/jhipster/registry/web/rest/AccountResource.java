@@ -18,6 +18,7 @@ import io.github.jhipster.registry.web.rest.dto.UserDTO;
 
 /**
  * REST controller for managing the current user's account.
+ * 当前用户的个人账户
  */
 @RestController
 @RequestMapping("/api")
@@ -26,6 +27,7 @@ public class AccountResource {
     private final Logger log = LoggerFactory.getLogger(AccountResource.class);
 
     /**
+     * 检查用户是否验证,并返回它的登录
      * GET  /authenticate : check if the user is authenticated, and return its login.
      *
      * @param request the HTTP request
@@ -41,6 +43,7 @@ public class AccountResource {
     }
 
     /**
+     * 获取当前用户的
      * GET  /account : get the current user.
      *
      * @return the ResponseEntity with status 200 (OK) and the current user in body, or status 500 (Internal Server

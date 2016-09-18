@@ -5,15 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 传到错误对象
  * DTO for transfering error message with a list of field errors.
  */
 public class ErrorDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 错误信息
+     */
     private final String message;
+    /**
+     * 错误描述
+     */
     private final String description;
 
+    /**
+     * 字段错误集合List
+     */
     private List<FieldErrorDTO> fieldErrors;
 
     public ErrorDTO(String message) {

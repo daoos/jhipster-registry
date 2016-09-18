@@ -14,6 +14,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 控制器的建议将服务器端异常客户程序友好json结构
  * Controller advice to translate the server side exceptions to client-friendly json structures.
  */
 @ControllerAdvice
@@ -24,6 +25,7 @@ public class ExceptionTranslator {
     @ResponseBody
     public ErrorDTO processValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
+//        字段错误
         List<FieldError> fieldErrors = result.getFieldErrors();
 
         return processFieldErrors(fieldErrors);
